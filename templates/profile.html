@@ -1,0 +1,52 @@
+{% include "header.html" %}
+{% include "appbar.html" %}
+
+
+<div class="container pt-5">
+    <div class="row mt-5 px-3">
+        <img src="https://quera.org/blog/wp-content/uploads/2017/01/qposter-1-1.jpg" height="200px" style="object-fit: cover;border-radius: 10px;overflow: hidden; padding: 0;">
+    </div>
+    <div class="row">
+        <div class="col-md-4 p-3 col-sm-12">
+            <div class="p-3" style="border-radius: 10px; box-shadow: 0px 0px 10px 0px #00000008; background-color: darkturquoise;">
+                <h2>تعداد سوالات این مسابقه:<span> ۴ تاس</span></h2>
+                <p>از این قسمت میتوانید به سوال فعال مسابقه دسترسی داشته باشید و پاسخ خود را در اینجا ارسال نمایید.</p>
+                <a class="btn btn-dark px-4 py-2" href="/questions">مشاهده سوال فعال</a>
+            </div>
+            <div class="mt-4 p-3" style="border-radius: 10px; box-shadow: 0px 0px 10px 0px #00000008; background-color: thistle;">
+                <h2>مشاهده امتیازات</h2>
+                <p>از این قسمت میتوانید امتیازات به دست آمده از هر سوال برای تیم خود را مشاهده نمایید 😉</p>
+                <a class="btn btn-dark px-4 py-2" href="/scoreboard">مشاهده امتیازات گروه</a>
+            </div>
+        </div>
+        
+        <div class="col-md-8 mt-4 col-sm-12 mb-2" >
+            <h3 class="text-white">اطلاع‌رسانی‌ها</h3>
+            <div class="card bg-dark text-white p-2" style="border-radius: 10px !important;overflow: hidden;">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading text-center">به سیستم مسابقات ACM دانشگاه بزرگمهر خوش آمدید 👋</h4>
+                    <p>با ورود به قسمت مشاهده سوال فعال میتوانید به سوال مطرح شده توسط داوران دسترسی پیدا کرده، جزئیات آنرا مطالعه نمایید و سپس پاسخ
+                        خود را در آن قسمت بارگذاری کنید.
+                    </p>
+                    <p>با ورود به بخش امتیازات میتوانید وضعیت امتیازات تیم خود را بررسی نمایید
+                    </p>
+                </div>
+                {% if news|length == 0 %}
+                    <p>فعالا خبری نیست</p>
+                {% else %}
+                    {% for item in news %}
+                        <div class="mb-2" style="border-right: 2px solid;padding-right: 10px;">
+                            <h4>{{ item.title }}</h4>
+                            <p>
+                                {% load markdownify %}
+                                {{ item.desc|markdownify }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

@@ -1,0 +1,59 @@
+{% include "header.html" %}
+{% include "appbar.html" %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-sm-12 pt-5 mt-5">
+      <table class="ui selectable unstackable center aligned small table">
+        <thead>
+          <tr>
+
+            <th rowspan="2">زمان ارسال</th>
+            <th rowspan="2">نوع فایل</th>
+            <th rowspan="2">وضعیت</th>
+            <th rowspan="2">فایل</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for item in items %}
+
+          <tr data-submission_id="11710654" data-problem_id="179665" data-user_id="101515">
+
+            <td>{{ item.created_at }}</td>
+            <td dir="auto">{{ item.file_type }}</td>
+            <td>
+
+              <div
+                class="ui {% if item.point == 0 %} yellow {% elif item.point < 0 %} red {% else %} green {% endif %} label">
+                {% if item.point == 0 %} در انتظار داوری {% elif item.point < 0 %} خطا در پاسخ {% else %} {{
+                  item.point }} {% endif %} </div>
+
+            </td>
+            <td>
+              <a class="ui show-submission-info button orange icon" data-action="get_code">
+                <i class="code large icon"></i>
+              </a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="center aligned" colspan="1">۱ از
+              ۱ ارسال
+            </th>
+            <th class="right aligned" colspan="42">
+
+
+
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}

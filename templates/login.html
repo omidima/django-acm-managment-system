@@ -1,0 +1,103 @@
+{% include "header.html" %}
+
+
+<div class="container" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 pt-4 mt-4 col-md-12">
+
+      <div id="auth-container">
+        <div style="text-align: center">
+
+          <a href="/">
+            <img src="/images/logo.png" class="bg-dark p-4 px-5 rounded">
+          </a>
+          <h1 class="text-white">سامانه برگزاری مسابقات ACM دانشگاه بزرگمهر قائنات</h1>
+
+        </div>
+        <p class="ui hidden divider"></p>
+
+
+        <div class="ui  bottom attached  padded segment bg-dark rounded">
+          {% block content %}
+          <form class="ui form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="bi bi-people-fill" style="color: black; position: absolute; right: 10px;top: 13px;"></i>
+                <input dir="ltr" type="text" name="username" required="" placeholder="نام گروه">
+              </div>
+
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="bi bi-lock-fill" style="color: black; position: absolute; right: 10px;top: 13px;"></i>
+                <input id="password-input" dir="ltr" type="password" name="password" placeholder="گذرواژه">
+              </div>
+
+            </div>
+
+            <div class="field flex-sb">
+              <div class="ui checkbox" id="show-password">
+                <input type="checkbox" id="reveal-box" tabindex="0" class="hidden">
+                <label>نمایش گذرواژه</label>
+              </div>
+            </div>
+            <div class="field" style="margin-top: 2rem;">
+              <button type="submit" class="btn btn-primary w-100">ورود</button>
+            </div>
+          </form>
+          {% endblock %}
+
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // For Showing Password
+    var passwordInput = document.getElementById("password-input")
+    $('#show-password').checkbox({
+      onChecked: function () {
+        passwordInput.type = "text"
+      },
+      onUnchecked: function () {
+        passwordInput.type = "password"
+      }
+    })
+
+    $('.ui.form').form({
+      inline: true,
+      fields: {
+        login: {
+          identifier: 'login',
+          rules: [
+            { type: 'empty', prompt: 'لطفا آدرس ایمیل خود را وارد کنید.' },
+            { type: 'email', prompt: 'لطفا آدرس ایمیل معتبر وارد کنید.' }
+          ]
+        },
+        password: {
+          identifier: 'password',
+          rules: [
+            { type: 'empty', prompt: 'لطفا گذرواژه خود را وارد کنید.' }
+          ]
+        }
+      }
+    });
+  });
+</script>
+
+</div>
+
+</div>
+</div>
+</div>
+{% include "footer.html" %}

@@ -1,0 +1,146 @@
+{% include "header.html" %}
+{% include "appbar.html" %}
+
+
+{% if question_title %}
+<div class="container pt-4 text-white">
+    <div class="row">
+        <div class="col">
+            <div class="twelve wide column">
+                <div class="ui secondary menu">
+                    <div class="right menu" style="align-items: center"></div>
+                </div>
+                <div class="ui segment qu-problem-segment bg-dark">
+                    <div id="problem-menu">
+                        <a target="_blank" href="/problemset/assignments/244/problems/179665/print
+            " rel="noopener">
+                            <i class="print link blue icon qu-popup" data-content="چاپ" data-position="top center"
+                                data-variation="tiny"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <div class="ui center aligned fluid container">
+                            <h1>
+                                {{ question_title }}
+                            </h1>
+                        </div>
+                        <br>
+                        <div class="description-html" id="description_html-179665">
+                            <ul dir="auto">
+                                <li>محدودیت زمان: ۱ ثانیه</li>
+                                <li>محدودیت حافظه: ۲۵۶ مگابایت</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        {% load markdownify %}
+                        {{ question_content|markdownify }}
+                        </hr>
+                        {% load markdownify %}
+                        {{ question_example|markdownify }}
+                    </div>
+
+                    <script type="text/javascript">
+                        document.addEventListener('DOMContentLoaded', function () {
+                            render_problem_text('description_md-179665', 'description_html-179665');
+                        });
+                    </script>
+
+
+
+                    <div class="ui horizontal divider text-white">
+                        ارسال پاسخ برای این سؤال
+                        <p>تعداد دفعات مجاز برای ارسال جواب {{ atemped }}</p>
+                    </div>
+                    {% if atemped <= 0 %} <div class="alert alert-warning text-dark" role="alert">
+                        تعداد دفعات مجاز ارسال کد برای شما به پایان رسیده‌ است
+                </div>
+                {% else %}
+                <div>
+                    {% block content %}
+                    <form class="ui form" id="submit-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="three fields">
+                            <div class="required field ">
+
+
+
+                                <label for="id_file_type" class="text-white">
+                                    نوع فایل
+
+                                </label>
+                                <div class="selection" >
+                                    <select name="type">
+                                        <option value="C">C</option>
+
+                                        <option value="C++">C++</option>
+
+                                        <option value="Java">Java</option>
+
+                                        <option value="Python">Python</option>
+
+                                        <option value="Mono C#">Mono C#</option>
+
+                                        <option value="Php">Php</option>
+
+                                        <option value="Node.js">Node.js</option>
+
+                                        <option value="Swift">Swift</option>
+
+                                        <option value="Javascript">Javascript</option>
+
+                                    </select></i>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="three fields">
+                            <div class="required field ">
+                                <label for="id_file" class="text-white">
+                                    فایل
+
+                                </label>
+                                <input type="file" name="file"
+                                    accept=".c, .cpp, .java, .java, .py, .py, .py, .cs, .php, .php, .js, .pl, .go, .rb, .rs, .m, .swift, .js, .hs"
+                                    required="" id="id_file">
+                            </div>
+
+                        </div>
+                        <input type="hidden" name="q" value="{{ q }}" id="submission-type">
+                        <button class="ui labeled icon orange button submit-button" data-type="JS" type="submit">
+                            <i class="send icon"></i> ارسال پاسخ
+                        </button>
+
+                    </form>
+                    {% endblock %}
+
+
+
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% else %}
+
+<div class="container pt-5 mt-5">
+    <div class="row">
+        <div class="col pt-4">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">خوش اومدی :)</h4>
+                <p>از اینکه توی این مسابقات شرکت کردی خیلی خوش‌حالیم، هنوز سوالی فعال نشده که این نشون میده یا مسابقه
+                    تموم شده یا هنوز شروع نشده.
+                    پس تا شروع شدن مسابقات صبر کن دوست من.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% include "footer.html" %}
