@@ -50,6 +50,8 @@ class QuestionContent(LoginRequiredMixin, CreateView):
         file = self.get_form_kwargs()['files']['file']
 
         if (self.get_queryset() and self.get_queryset().is_active and self.get_queryset().id == int(id)):
+            answer = Answer.objects.filter(question=self.get_queryset()).filter(group=group).delete()
+            
             Answer.objects.create(
                 file=file,
                 question=self.get_queryset(),

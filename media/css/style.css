@@ -5707,7 +5707,7 @@ ul:not(.cs-mega_wrapper)
     min-height: 850px;
   }
   .cs-hero.cs-style1 .cs-hero_title {
-    font-size: 80px;
+    font-size: 100px;
   }
   .cs-hero.cs-style1 .cs-hero_subtitle {
     font-size: 16px;
@@ -5817,7 +5817,7 @@ ul:not(.cs-mega_wrapper)
             align-items: flex-start;
   }
   .cs-hero.cs-style1 .cs-hero_title {
-    font-size: 56px;
+    font-size: 80px;
     margin-bottom: 20px;
   }
   .cs-hero.cs-style1 .cs-hero_subtitle {
@@ -5856,7 +5856,7 @@ ul:not(.cs-mega_wrapper)
 
 @media screen and (max-width: 575px) {
   .cs-hero.cs-style1 .cs-hero_title {
-    font-size: 42px;
+    font-size: 42px !important;
   }
   .cs-hero.cs-style1 .cs-hero_title br {
     display: none;

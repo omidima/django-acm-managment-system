@@ -25,19 +25,17 @@ def index(request):
     return render(request=request, template_name="home.html")
 
 def handler404(request, *args, **argv):
-    response = render('404.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 404
-    return response
+    return render(request,'404.html')
 
 urls = [
     path('', index, name="index"),
     path('',include('apps.groups.urls')),
-    path('^(?P<path>.*)$',handler404),
     path('questions',include('apps.questinos.urls')),
 ]
 
 if settings.NEED_ADMIN:
     urls.append(path('admin/', admin.site.urls))
+
+urls.append(path('404/',handler404))
 
 urlpatterns =  urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
