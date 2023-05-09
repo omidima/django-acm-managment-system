@@ -4,9 +4,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 col-sm-12 pt-5 mt-5">
-      <table class="ui selectable unstackable center aligned small table">
-        <thead>
-          <tr>
+      <table class="bg-dark text-white ui selectable unstackable center aligned small table" style="vertical-align: middle;">
+        <thead class="bg-dark">
+          <tr class="bg-dark align-items-center">
 
             <th rowspan="2">زمان ارسال</th>
             <th rowspan="2">نوع فایل</th>
@@ -26,13 +26,12 @@
 
               <div
                 class="ui {% if item.point == 0 %} yellow {% elif item.point < 0 %} red {% else %} green {% endif %} label">
-                {% if item.point == 0 %} در انتظار داوری {% elif item.point < 0 %} خطا در پاسخ {% else %} {{
-                  item.point }} {% endif %} </div>
+                {% if item.point == 0 %} در انتظار داوری {% elif item.point < 0 %} خطا در پاسخ {% else %} {{ item.point }} {% endif %} </div>
 
             </td>
             <td>
-              <a class="ui show-submission-info button orange icon" data-action="get_code">
-                <i class="code large icon"></i>
+              <a class="ui show-submission-info button orange icon" href="{{ item.file }}" data-action="get_code">
+                &lt;	/ &gt;	
               </a>
             </td>
           </tr>
