@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.questinos.models import AnswerAtemp
@@ -63,10 +63,11 @@ class QuestionContent(LoginRequiredMixin, CreateView):
                 group=group,
                 question=self.get_queryset(),
             ) 
+            return redirect('/questions')
         else:
             return render(request, self.template_name,{
                 "group_name": self.request.user.name,
 
                 "title": None
             })
-        return super().post(request, *args, **kwargs)
+        # return super().post(request, *args, **kwargs)
